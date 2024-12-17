@@ -1,0 +1,108 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    color: #666;
+}
+
+code {
+    color: #000;
+}
+
+h2 {
+    margin-top: 2em;
+    
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    padding: 2em;
+    margin: 2em auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+}
+
+.example {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border: 1px solid #eee;
+    background-color: #f8f9fa;
+    border-radius: 0.25em;
+    margin-bottom: 1em;
+
+    h3 {
+        margin-top: 0;
+    }
+}
+
+#circle {
+    animation: move 3s linear infinite, changeColor 3s linear infinite;
+}
+
+/* Animation for the circle */
+@keyframes move {
+    0% { 
+        transform: translateX(0); 
+    }
+    50% { 
+        transform: translateX(90%); 
+    }
+    100% { 
+        transform: translateX(0); 
+    }
+}
+
+@keyframes changeColor {
+    0% { 
+        fill: blue; 
+    }
+    33% { 
+        fill: red; 
+    }
+    66% { 
+        fill: green; 
+    }
+    100% { 
+        fill: blue; 
+    }
+}
+
+.animatedBar {
+    height: 5px;
+    width: 100%;
+    background-color: #f8f9fa;
+    border-radius: 2px;
+    overflow: hidden;
+    .progress {
+        background-color: #007bff;
+        height: 100%;
+        animation: autoProgressWidth 5s linear infinite;
+    }
+}
+
+
+/* Animations for animatedBar */
+@keyframes autoProgressWidth {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+    
+}
