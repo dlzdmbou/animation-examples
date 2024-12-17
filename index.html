@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Animation examples voor Luka</title>
+		<link href="style.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Animation examples voor Luka</h1>
+			<p>
+				We kunnen op verschillende manieren gebruik maken van animaties
+				op het web. Hieronder zullen we naar verschillende opties
+				kijken.
+			</p>
+			<ul>
+				<li>
+					<h2>Een plaatje als animated .gif:</h2>
+					<p>
+						👍 Voordelen: Makkelijk in gebruik om simpele animaties toe
+						te voegen.
+					</p>
+					<p>
+						👎 Nadelen: Grote bestanden, beperkte controle over de
+						animatie.
+					</p>
+					<div class="example">
+						<!-- Ja dit is .AVIF, maar zelfde idee als .GIF formaat -->
+						<img
+							src="nyan-cat.avif"
+							alt="nyan cat gif"
+							width="480"
+						/>
+					</div>
+				</li>
+				<li>
+					<h2>Een video:</h2>
+					<p>
+						👍 Voordelen: Makkelijk in gebruik om complexe animaties
+						toe te voegen.
+					</p>
+					<p>
+						👎 Nadelen: Nog grotere bestanden, beperkte controle over
+						de animatie.
+					</p>
+					<div class="example">
+						<video width="480" height="320" controls>
+							<source
+								src="video-3195394-uhd_3840_2160_25fps.mp4"
+								type="video/mp4"
+							/>
+							Your browser does not support the video tag.
+						</video>
+					</div>
+				</li>
+				<li>
+					<h2>SVG:</h2>
+					<p>
+						👍 Voordelen: Gemiddeld in gebruik, goede controle over de
+						animatie.
+					</p>
+					<p>👎 Nadelen: Minder flexibel dan JavaScript.</p>
+					<div class="example">
+						<h3>svg (svg animatie):</h3>
+						<svg
+							width="100%"
+							height="200"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<!-- Circle that moves horizontally and changes color -->
+							<circle cx="50" cy="100" r="30" fill="blue">
+								<!-- Animation for horizontal movement -->
+								<animate
+									attributeName="cx"
+									from="50"
+									to="100%"
+									dur="3s"
+									repeatCount="indefinite"
+								/>
+
+								<!-- Animation for color change -->
+								<animate
+									attributeName="fill"
+									values="blue;red;green;blue"
+									dur="3s"
+									repeatCount="indefinite"
+								/>
+							</circle>
+						</svg>
+					</div>
+					<div class="example">
+						<h3>svg (CSS voor animaties):</h3>
+						<svg
+							width="100%"
+							height="200"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<!-- Circle that moves horizontally and changes color -->
+							<circle
+								id="circle"
+								cx="50"
+								cy="100"
+								r="30"
+								fill="blue"
+							></circle>
+						</svg>
+					</div>
+				</li>
+				<li>
+					<h2>CSS:</h2>
+					<p>
+						👍 Voordelen: Makkelijk in gebruik, volledige controle over
+						de animatie.
+					</p>
+					<p>
+						👎 Nadelen: Minder flexibel dan JavaScript, kan beperkt
+						zijn in complexiteit.
+					</p>
+					<div class="example">
+						<div class="animatedBar">
+							<div class="progress"></div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<h2>JavaScript:</h2>
+					<p>👍 Voordelen: Volledige controle over de animatie.</p>
+					<p>
+						👎 Nadelen: Moeilijker in gebruik, kan veel tijd kosten om
+						te implementeren.
+					</p>
+					<div class="example">
+						<canvas
+							id="animationCanvas"
+							width=""
+							height=""
+							style="border: 1px solid black"
+						></canvas>
+						<script>
+							// Get the canvas and context
+							const canvas =
+								document.getElementById("animationCanvas");
+							const ctx = canvas.getContext("2d");
+
+							// Circle properties
+							let x = 50; // Initial x position
+							let y = canvas.height / 2; // Fixed y position (center vertically)
+							let radius = 30;
+							let speed = 2; // Speed of the circle
+							let direction = 1; // 1 for right, -1 for left
+
+							// Animation function
+							function animate() {
+								// Clear the canvas
+								ctx.clearRect(
+									0,
+									0,
+									canvas.width,
+									canvas.height
+								);
+
+								// Draw the circle
+								ctx.beginPath();
+								ctx.arc(x, y, radius, 0, Math.PI * 2);
+								ctx.fillStyle = "blue";
+								ctx.fill();
+								ctx.closePath();
+
+								// Update the circle's position
+								x += speed * direction;
+
+								// Bounce back if the circle hits the canvas edges
+								if (
+									x + radius > canvas.width ||
+									x - radius < 0
+								) {
+									direction *= -1; // Reverse the direction
+								}
+
+								// Request the next frame
+								requestAnimationFrame(animate);
+							}
+
+							// Start the animation
+							animate();
+						</script>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="container">
+			<div>
+				<h2>Gif en video</h2>
+				<p>
+					Maak gebruik van een image tag of video tag in html, en voeg
+					hier een referentie naar het image of video bestand toe.
+				</p>
+			</div>
+        </div>
+        <div class="container">
+			<div>
+				<h2>SVG</h2>
+                <p>
+                    Kan zonder CSS animaties bevatten door middel van <code>&lt;animate&gt;</code> tags binnen het SVG element.
+                </p>
+				<p>
+					Maak gebruik van <code>transition</code> of
+					<code>@keyframes</code> in CSS om animaties te maken.
+				</p>
+				<p>
+					Voor meer controle kan je gebruik maken van JavaScript om
+					bijvoorbeeld de animatie te starten. Door bijvoorbeeld eigen
+					<code>'.hidden'</code> of <code>'.active'</code> classes toe
+					te voegen.
+				</p>
+			</div>
+        </div>
+        <div class="container">
+			<div>
+				<h2>CSS</h2>
+				<p>
+					Maak gebruik van <code>transition</code> of
+					<code>@keyframes</code> in CSS om animaties te maken.
+				</p>
+				<p>
+					Voor meer controle kan je gebruik maken van JavaScript om
+					bijvoorbeeld de animatie te starten. Door bijvoorbeeld eigen
+					<code>'.hidden'</code> of <code>'.active'</code> classes toe
+					te voegen.
+				</p>
+			</div>
+        </div>
+        <div class="container">
+			<div>
+				<h2>JavaScript</h2>
+				<p>Maak gebruik van JavaScript om animaties te maken.</p>
+				<p>
+					We kunnen met JavaScript CSS classes toevoegen of
+					verwijderen om animaties te starten.
+				</p>
+				<p>
+					We kunnen echter ook veel verder gaan, door zelf animaties te maken met
+					JavaScript. Dit kan door bijvoorbeeld de
+					<code>requestAnimationFrame</code> functie te gebruiken. In
+					combinatie met een canvas element kan je hiermee complexe
+					animaties maken.
+				</p>
+                <p>
+                    We kunnen het canvas element ook inzetten om moderne 3d games en animaties te maken. 
+                    Dit kan door gebruik te maken van de WebGL API. We kunnen hiermee 3d objecten renderen en deze animeren.
+                    Deze techniek wordt veel gebruikt voor het maken van games en interactieve 3d visualisaties.
+                    Voorbeelden van dit soort visualisaties kun je vinden op <a href="https://threejs.org/">threejs.org</a>.
+                </p>
+			</div>
+		</div>
+	</body>
+</html>
